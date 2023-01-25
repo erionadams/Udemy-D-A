@@ -82,6 +82,33 @@ namespace LinkedLists
                     this.size++;
                 }
             }
+            
+            public dynamic Insert(int data, int index) //O(n)
+            {
+                LinkedListNode pre = this.head;
+                LinkedListNode aft;
+
+                if(index > this.size)
+                {
+                    Console.WriteLine("input error");
+                    return 1;
+                }
+
+                if(head != null)
+                {
+                    for(int i = 0; i < index - 1; i++)
+                    {
+                        pre = pre.Next;
+                    }
+
+                    aft = pre.Next;
+                    LinkedListNode newNode = new LinkedListNode(data);
+                    newNode.Next = aft;
+                    pre.Next = newNode;
+                    this.size++;
+                }
+                return 0;
+            }
 
             public LinkedListNode FindHead()
             {
@@ -95,12 +122,13 @@ namespace LinkedLists
             LinkedList list = new LinkedList();
 
             list.Append(5);
-            list.Append(16);
+            list.Append(58);
+            list.Append(73);
             list.Prepend(1);
             list.Prepend(7);
-            list.Append(10);
+            list.Append(32);
 
-            // order should be: 7, 1, 5, 16, 10
+            list.Insert(0, 5);
 
             LinkedListNode head = list.FindHead();
 

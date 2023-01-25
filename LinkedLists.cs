@@ -8,10 +8,10 @@ namespace LinkedLists
             private dynamic data;
             private LinkedListNode next;
 
-            public LinkedListNode(int x, LinkedListNode next)
+            public LinkedListNode(int x)
             {
                 this.data = x;
-                this.next = next;
+                this.next = null;
             }
 
             public int Data
@@ -30,12 +30,15 @@ namespace LinkedLists
         class LinkedList
         {
             private LinkedListNode head;
+            private LinkedListNode tail;
             private int size;
 
             public LinkedList()
             {
                 this.head = null;
+                this.tail = null;
                 this.size = 0;
+
             }
 
             public bool Empty
@@ -51,7 +54,7 @@ namespace LinkedLists
             public void Append(int data) //O(1)
             {
                 //crete a new node that holds the new data and points to null.
-                LinkedListNode newNode = new LinkedListNode(data, null);
+                LinkedListNode newNode = new LinkedListNode(data);
 
                 //If the list is empty set the new data as the head.
                 if(this.size == 0)
@@ -63,19 +66,21 @@ namespace LinkedLists
                 //Set the new node.next to null (new tail).
                 else
                 {
-                    LinkedListNode lastNode = FindLastNode();
-                    lastNode.Next = newNode;
+                    this.tail.Next = newNode;
                 }
+                this.tail = newNode;
                 this.size++;
             }
 
             public void Prepend(int data) //O(1)
             {
-                LinkedListNode newNode;
-                newNode = new LinkedListNode(data, null);
-                newNode.Next = this.head;
-                this.head = newNode;
-                this.size++;
+                if(head != null)
+                {
+                    LinkedListNode newNode = new LinkedListNode(data);
+                    newNode.Next = this.head;
+                    this.head = newNode;
+                    this.size++;
+                }
             }
 
             public LinkedListNode FindHead()
@@ -83,17 +88,17 @@ namespace LinkedLists
                 return this.head;
             }
 
-            public LinkedListNode FindLastNode()
-            {
-                LinkedListNode node = this.head;
-                while (node.Next != null)
-                {
-                    node = node.Next;
-                    Console.WriteLine(node.Data);
-                }
+            // public LinkedListNode FindLastNode()
+            // {
+            //     LinkedListNode node = this.head;
+            //     while (node.Next != null)
+            //     {
+            //         node = node.Next;
+            //         Console.WriteLine(node.Data);
+            //     }
                 
-                return node;
-            }
+            //     return node;
+            // }
         }
 
         static void Main(string[] args)

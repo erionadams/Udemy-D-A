@@ -83,14 +83,24 @@ namespace LinkedLists
                 }
             }
             
-            public int Insert(int data, int index) //O(n)
+            public dynamic Insert(int data, int index) //O(n) sometimes 0(1)
             {
                 LinkedListNode pre = this.head;
                 LinkedListNode aft;
 
-                if(index > this.size || index == 0)
+                if(index == this.size)
                 {
-                    Console.WriteLine("input error");
+                    this.Append(data);
+                    return 0;
+                }
+                else if(index == 0)
+                {
+                    this.Prepend(data);
+                    return 0;
+                }
+                else if(index > this.size)
+                {
+                    Console.WriteLine("Input Error");
                     return 1;
                 }
 
@@ -128,7 +138,7 @@ namespace LinkedLists
             list.Prepend(7);
             list.Append(32);
 
-            list.Insert(0, 0);
+            list.Insert(0, 6);
 
             LinkedListNode head = list.FindHead();
 

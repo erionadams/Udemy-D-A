@@ -88,17 +88,6 @@ namespace LinkedLists
                 return this.head;
             }
 
-            // public LinkedListNode FindLastNode()
-            // {
-            //     LinkedListNode node = this.head;
-            //     while (node.Next != null)
-            //     {
-            //         node = node.Next;
-            //         Console.WriteLine(node.Data);
-            //     }
-                
-            //     return node;
-            // }
         }
 
         static void Main(string[] args)

@@ -1,215 +1,215 @@
 
-namespace LinkedLists
-{
-    class Program
-    {
-        class LinkedListNode
-        {
-            private dynamic data;
-            private LinkedListNode next;
+// namespace LinkedLists
+// {
+//     class Program
+//     {
+//         class LinkedListNode
+//         {
+//             private dynamic data;
+//             private LinkedListNode next;
 
-            public LinkedListNode(int x)
-            {
-                this.data = x;
-                this.next = null;
-            }
+//             public LinkedListNode(int x)
+//             {
+//                 this.data = x;
+//                 this.next = null;
+//             }
 
-            public int Data
-            {
-                get { return this.data; }
-                set { this.data = value; }
-            }
+//             public int Data
+//             {
+//                 get { return this.data; }
+//                 set { this.data = value; }
+//             }
 
-            public LinkedListNode Next
-            {
-                get { return this.next; }
-                set { this.next = value; }
-            }
-        }
+//             public LinkedListNode Next
+//             {
+//                 get { return this.next; }
+//                 set { this.next = value; }
+//             }
+//         }
 
-        class LinkedList
-        {
-            private LinkedListNode head;
-            private LinkedListNode tail;
-            private int size;
+//         class LinkedList
+//         {
+//             private LinkedListNode head;
+//             private LinkedListNode tail;
+//             private int size;
 
-            public LinkedList()
-            {
-                this.head = null;
-                this.tail = this.head;
-                this.size = 0;
-            }
+//             public LinkedList()
+//             {
+//                 this.head = null;
+//                 this.tail = this.head;
+//                 this.size = 0;
+//             }
 
-            public bool Empty
-            {
-                get { return this.size == 0; }
-            }
+//             public bool Empty
+//             {
+//                 get { return this.size == 0; }
+//             }
 
-            public int Count
-            {
-                get { return this.size; }
-            }
+//             public int Count
+//             {
+//                 get { return this.size; }
+//             }
 
-            public void Append(int data) //O(1)
-            {
-                //crete a new node that holds the new data and points to null.
-                LinkedListNode newNode = new LinkedListNode(data);
+//             public void Append(int data) //O(1)
+//             {
+//                 //crete a new node that holds the new data and points to null.
+//                 LinkedListNode newNode = new LinkedListNode(data);
 
-                //If the list is empty set the new data as the head.
-                if(this.size == 0)
-                {
-                    this.head = newNode;
-                }
-                //Else there is already data in the list.
-                //Point the last node's pointer to the new data.
-                //Set the new node.next to null (new tail).
-                else
-                {
-                    this.tail.Next = newNode;
-                }
-                this.tail = newNode;
-                this.size++;
-            }
+//                 //If the list is empty set the new data as the head.
+//                 if(this.size == 0)
+//                 {
+//                     this.head = newNode;
+//                 }
+//                 //Else there is already data in the list.
+//                 //Point the last node's pointer to the new data.
+//                 //Set the new node.next to null (new tail).
+//                 else
+//                 {
+//                     this.tail.Next = newNode;
+//                 }
+//                 this.tail = newNode;
+//                 this.size++;
+//             }
 
-            public void Prepend(int data) //O(1)
-            {
-                if(head != null)
-                {
-                    LinkedListNode newNode = new LinkedListNode(data);
-                    newNode.Next = this.head;
-                    this.head = newNode;
-                    this.size++;
-                }
-            }
+//             public void Prepend(int data) //O(1)
+//             {
+//                 if(head != null)
+//                 {
+//                     LinkedListNode newNode = new LinkedListNode(data);
+//                     newNode.Next = this.head;
+//                     this.head = newNode;
+//                     this.size++;
+//                 }
+//             }
             
-            public void Insert(int data, int index) //O(n) sometimes 0(1)
-            {
-                LinkedListNode pre = this.head;
-                LinkedListNode aft;
+//             public void Insert(int data, int index) //O(n) sometimes 0(1)
+//             {
+//                 LinkedListNode pre = this.head;
+//                 LinkedListNode aft;
 
-                if(index == this.size)
-                {
-                    this.Append(data);
-                    return;
-                }
-                else if(index == 0)
-                {
-                    this.Prepend(data);
-                    return;
-                }
-                else if(index > this.size)
-                {
-                    Console.WriteLine("Input Error");
-                    return;
-                }
+//                 if(index == this.size)
+//                 {
+//                     this.Append(data);
+//                     return;
+//                 }
+//                 else if(index == 0)
+//                 {
+//                     this.Prepend(data);
+//                     return;
+//                 }
+//                 else if(index > this.size)
+//                 {
+//                     Console.WriteLine("Input Error");
+//                     return;
+//                 }
 
-                if(head != null)
-                {
-                    for(int i = 0; i < index - 1; i++)
-                    {
-                        pre = pre.Next;
-                    }
+//                 if(head != null)
+//                 {
+//                     for(int i = 0; i < index - 1; i++)
+//                     {
+//                         pre = pre.Next;
+//                     }
 
-                    aft = pre.Next;
-                    LinkedListNode newNode = new LinkedListNode(data);
-                    newNode.Next = aft;
-                    pre.Next = newNode;
-                    this.size++;
-                }
-                return;
-            }
+//                     aft = pre.Next;
+//                     LinkedListNode newNode = new LinkedListNode(data);
+//                     newNode.Next = aft;
+//                     pre.Next = newNode;
+//                     this.size++;
+//                 }
+//                 return;
+//             }
 
-            public void Remove(int index) //O(n)
-            {
-                LinkedListNode pre = this.head;
-                LinkedListNode del;
-                LinkedListNode aft;
+//             public void Remove(int index) //O(n)
+//             {
+//                 LinkedListNode pre = this.head;
+//                 LinkedListNode del;
+//                 LinkedListNode aft;
 
-                if(this.head == null)
-                {
-                    Console.WriteLine("The list is empty");
-                    return;
-                }
-                else if(this.head != null && index > this.size - 1 || index < 0)
-                {
-                    Console.WriteLine("Index error");
-                    return;
-                }
+//                 if(this.head == null)
+//                 {
+//                     Console.WriteLine("The list is empty");
+//                     return;
+//                 }
+//                 else if(this.head != null && index > this.size - 1 || index < 0)
+//                 {
+//                     Console.WriteLine("Index error");
+//                     return;
+//                 }
 
-                for(int i = 0; i < index - 1; i++)
-                {  
-                    pre = pre.Next;
-                }
-                del = pre.Next;
-                aft = del.Next;
-                pre.Next = aft;
-                del = null;
-                this.size--;
-            }
+//                 for(int i = 0; i < index - 1; i++)
+//                 {  
+//                     pre = pre.Next;
+//                 }
+//                 del = pre.Next;
+//                 aft = del.Next;
+//                 pre.Next = aft;
+//                 del = null;
+//                 this.size--;
+//             }
 
-            public dynamic Reverse(LinkedList list)
-            {
-                LinkedListNode first;
-                LinkedListNode second;
-                LinkedListNode temp;
+//             public dynamic Reverse(LinkedList list)
+//             {
+//                 LinkedListNode first;
+//                 LinkedListNode second;
+//                 LinkedListNode temp;
 
-                if(this.size == 1)
-                {
-                    return this.head;
-                }
+//                 if(this.size == 1)
+//                 {
+//                     return this.head;
+//                 }
 
-                first = this.head;
-                this.tail = this.head;
-                second = first.Next;
+//                 first = this.head;
+//                 this.tail = this.head;
+//                 second = first.Next;
 
-                while(second != null)
-                {
-                    temp = second.Next;
-                    second.Next = first;
-                    first = second;
-                    second = temp;
-                }
-                this.head.Next = null;
-                this.head = first;
+//                 while(second != null)
+//                 {
+//                     temp = second.Next;
+//                     second.Next = first;
+//                     first = second;
+//                     second = temp;
+//                 }
+//                 this.head.Next = null;
+//                 this.head = first;
 
-                return list;
-            }
+//                 return list;
+//             }
 
-            public LinkedListNode FindHead()
-            {
-                return this.head;
-            }
+//             public LinkedListNode FindHead()
+//             {
+//                 return this.head;
+//             }
 
-        }
+//         }
 
-        static void Main(string[] args)
-        {
-            LinkedList list = new LinkedList();
+//         static void Main(string[] args)
+//         {
+//             LinkedList list = new LinkedList();
 
-            list.Append(5);
-            list.Append(58);
-            list.Append(73);
-            //list.Prepend(1);
-            //list.Prepend(7);
-            list.Append(32);
+//             list.Append(5);
+//             list.Append(58);
+//             list.Append(73);
+//             //list.Prepend(1);
+//             //list.Prepend(7);
+//             list.Append(32);
 
-            //list.Remove(-3);
+//             //list.Remove(-3);
 
-            //list.Insert(0, 6);
+//             //list.Insert(0, 6);
 
-            Console.WriteLine(list.Reverse(list));
+//             Console.WriteLine(list.Reverse(list));
 
-            LinkedListNode head = list.FindHead();
+//             LinkedListNode head = list.FindHead();
 
 
-            while(head != null)
-            {
-                Console.WriteLine(head.Data);
-                head = head.Next;
-            }
+//             while(head != null)
+//             {
+//                 Console.WriteLine(head.Data);
+//                 head = head.Next;
+//             }
 
-            Console.WriteLine("count: " + list.Count);
+//             Console.WriteLine("count: " + list.Count);
 
-        }
-    }
-}
+//         }
+//     }
+// }

@@ -170,6 +170,7 @@
 //             Console.WriteLine(myBST.Count());
 //             Console.WriteLine($"{node.Value}, {node.Left.Value}, {node.Right.Value}");
 
+               //BST should look like:
 //             //      9
 //             //  4       20
 //             //1   6   15  170
